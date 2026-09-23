@@ -11,3 +11,4 @@ if __name__ == "__main__":
     text = load_pdf("data/2024-wttc-introduction-to-ai.pdf")
 
     print(text)
+    
