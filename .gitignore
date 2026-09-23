@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+venv/
+
+# Environment variables / secrets
+.env
+.env.*
+
+# IDE
+.vscode/
+
+# RAG / vector database
+chroma_db/
+chroma/
+*.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
