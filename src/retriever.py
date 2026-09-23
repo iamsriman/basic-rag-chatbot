@@ -16,4 +16,5 @@ if __name__=="__main__":
 
     for document in results:
         print("--------------------------------")
-        print(document)
+        print(document["ids"])
+        
