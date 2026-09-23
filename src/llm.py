@@ -9,8 +9,8 @@ client=genai.Client(
 )
 
 
-def generate_answer(question, context):
-    prompt = f"""
+def build_prompt(question, context):
+    return f"""
 You are a helpful assistant answering questions based on the provided context.
 
 Context:
@@ -25,9 +25,20 @@ Instructions:
 - Do not make up information.
 """
 
+
+def generate_answer(question, context):
+    prompt = build_prompt(question, context)
     response = client.models.generate_content(
         model="gemini-2.5-flash",
         contents=prompt
     )
 
     return response.text
+
+
+def generate_answer_stream(question, context):
+    prompt = build_prompt(question, context)
+    return client.models.generate_content_stream(
+        model="gemini-2.5-flash",
+        contents=prompt
+    )

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Archive — Document conversations</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand"><span class="brand-mark">A</span><span>Archive</span></div>
+        <button class="new-chat" id="new-chat">+ New chat</button>
+        <p class="eyebrow">Conversations</p>
+        <div class="chat-list" id="chat-list"></div>
+        <div class="sidebar-footer">One document per conversation</div>
+      </aside>
+
+      <main class="main-column">
+        <header class="topbar">
+          <div><p class="eyebrow">Document conversation</p><h1 id="chat-title">New conversation</h1></div>
+          <button class="text-button" id="delete-chat">Delete chat</button>
+        </header>
+
+        <section class="content" id="content">
+          <div class="empty-state" id="empty-state">
+            <p class="eyebrow">Start with a source</p>
+            <h2>Bring one document into focus.</h2>
+            <p>Upload a PDF or text file, inspect how it was chunked, then ask precise questions about it.</p>
+            <button class="primary-button" id="empty-upload">Choose a document</button>
+          </div>
+          <div class="message-list hidden" id="message-list"></div>
+        </section>
+
+        <section class="composer-wrap">
+          <div class="notice hidden" id="notice"></div>
+          <form class="composer" id="composer">
+            <textarea id="question" rows="1" placeholder="Ask about your document…" aria-label="Question"></textarea>
+            <button class="send-button" type="submit" aria-label="Send question">↑</button>
+          </form>
+          <p class="composer-hint">Answers are grounded in the uploaded document.</p>
+        </section>
+      </main>
+
+      <aside class="inspector">
+        <div class="inspector-header"><p class="eyebrow">Workspace</p><button class="text-button" id="upload-button">Upload</button></div>
+        <input id="file-input" type="file" accept=".pdf,.txt,.md" hidden />
+        <div class="dropzone" id="dropzone">
+          <div class="drop-icon">↥</div>
+          <strong>Drop a document here</strong>
+          <span>PDF, TXT, or Markdown · one per chat</span>
+        </div>
+        <div class="document-card hidden" id="document-card"></div>
+        <div class="chunks-section hidden" id="chunks-section">
+          <div class="section-heading"><div><p class="eyebrow">Document map</p><h2>Chunks</h2></div><span id="chunk-count"></span></div>
+          <div class="chunk-list" id="chunk-list"></div>
+          <div class="pagination"><button class="text-button" id="previous-page">Previous</button><span id="page-label"></span><button class="text-button" id="next-page">Next</button></div>
+        </div>
+      </aside>
+    </div>
+    <script src="/assets/app.js"></script>
+  </body>
+</html>

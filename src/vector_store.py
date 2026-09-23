@@ -8,12 +8,24 @@ collection=client.get_or_create_collection(
     name="documents"
 )
 
-def add_documents(chunks, embeddings):
-    ids=[f'chunk_{i}' for i in range(len(chunks))]
+def add_documents(chunks, embeddings, chat_id=None, document_id=None, metadatas=None):
+    ids=[f'chunk_{document_id or "legacy"}_{i}' for i in range(len(chunks))]
+    if metadatas is None:
+        metadatas = [{} for _ in chunks]
+    else:
+        metadatas = [metadata.copy() for metadata in metadatas]
+
+    for metadata in metadatas:
+        if chat_id:
+            metadata["chat_id"] = chat_id
+        if document_id:
+            metadata["document_id"] = document_id
+
     collection.add(
         ids=ids,
         documents=chunks,
-        embeddings=embeddings.tolist()
+        embeddings=embeddings.tolist(),
+        metadatas=metadatas
     )
     print(f"added {len(chunks)} chunks to ChromaDB")
 
